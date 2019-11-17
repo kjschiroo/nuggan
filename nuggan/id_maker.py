@@ -1,5 +1,6 @@
 """Module for creating ids"""
 import hashlib
+import time
 import uuid
 
 
@@ -20,7 +21,9 @@ def create_id(
     """
     if '-' in prefix:
         raise ValueError('prefix cannot contain the "-" character.')
-    identifier = prefix + '-' + str(uuid.uuid4())
+    now = int(time.time())
+    hex_time = '{0:#012x}'.format(now)[-10:]
+    identifier = prefix + '-' + hex_time + '-' + str(uuid.uuid4())
     return _append_hash(identifier, salt=salt)
 
 
@@ -64,14 +67,15 @@ def parse_id(id_value: str) -> dict:
         A dictionary containing the parts of the id including the prefix,
         uuid, and checksum.
     """
-    if len(id_value.split('-')) != 7:
+    if len(id_value.split('-')) != 8:
         template = '"{value}" is not a nuggan id.'
         raise ValueError(template.format(value=id_value))
-    prefix, remaining = id_value.split('-', maxsplit=1)
+    prefix, hex_time, remaining = id_value.split('-', maxsplit=2)
     base_id, checksum = remaining.rsplit('-', maxsplit=1)
     prefixed_id, _ = id_value.rsplit('-', maxsplit=1)
     return {
         'prefix': prefix,
+        'hex_time': hex_time,
         'prefixed_id': prefixed_id,
         'base_id': base_id,
         'checksum': checksum
