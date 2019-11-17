@@ -3,9 +3,9 @@ name = "nuggan"
 version = "0.1.0"
 description = "A library for creating self-aware ids"
 authors = ["Kevin Schiroo <kjschiroo@gmail.com>"]
-license = MIT
-repository = https://github.com/kjschiroo/nuggan
-readme = README.md
+license = "MIT"
+repository = "https://github.com/kjschiroo/nuggan"
+readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.7"
