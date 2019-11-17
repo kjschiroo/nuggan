@@ -1,0 +1,14 @@
+[all]
+non_interactive = True
+ignore = vendor/**
+[all.line_count]
+bears = LineCountBear
+max_lines_per_file = 400
+[all.code]
+files = **/*.py
+[all.code.complexity]
+bears = RadonBear
+[all.code.style]
+bears = PycodestyleBear,PyLintBear,PyCommentedCodeBear
+pylint_disable = E0401,R0903,W0613
+pylint_rcfile = .pylintrc
