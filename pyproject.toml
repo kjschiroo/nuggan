@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "nuggan"
 version = "0.1.0"
-description = ""
+description = "A library for creating self-aware ids"
 authors = ["Kevin Schiroo <kjschiroo@gmail.com>"]
 
 [tool.poetry.dependencies]
